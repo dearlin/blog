@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>文档管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script language="javascript">
+function viewArc(aid){
+	if(aid==0) aid = getOneItem();
+	window.open("archives.asp?aid="+aid+"&action=viewArchives");
+}
+function editArc(aid){
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=editArchives";
+}
+function updateArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=makeArchives&qstr="+qstr+"";
+}
+function checkArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=checkArchives&qstr="+qstr+"";
+}
+function moveArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=moveArchives&qstr="+qstr+"";
+}
+function adArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=commendArchives&qstr="+qstr+"";
+}
+function delArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=delArchives&qstr="+qstr+"";
+}
+
+//获得选中文件的文件名
+function getCheckboxItem()
+{
+	var allSel="";
+	if(document.form2.id.value) return document.form2.id.value;
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+			if(allSel=="")
+				allSel=document.form2.id[i].value;
+			else
+				allSel=allSel+"`"+document.form2.id[i].value;
+		}
+	}
+	return allSel;
+}
+
+//获得选中其中一个的id
+function getOneItem()
+{
+	var allSel="";
+	if(document.form2.id.value) return document.form2.id.value;
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+				allSel = document.form2.id[i].value;
+				break;
+		}
+	}
+	return allSel;
+}
+function selAll()
+{
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(!document.form2.id[i].checked)
+		{
+			document.form2.id[i].checked=true;
+		}
+	}
+}
+function noSelAll()
+{
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+			document.form2.id[i].checked=false;
+		}
+	}
+}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+
+<!--  快速转换位置按钮  -->
+<table width="98%" border="0" cellpadding="0" cellspacing="1" bgcolor="#D1DDAA" align="center">
+<tr>
+ <td height="26" background="skin/images/newlinebg3.gif">
+  <table width="98%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left">
+   <div class="daohang">&nbsp;&nbsp;您的位置：<a href="/">首页</a> &gt; 添加分类</div>
+ </td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+  
+<!--  内容列表   -->
+<form name="form" method="post" action="">
+		<table class="edit_shezhi"  width="100%"cellpadding="0" cellspacing="1">
+		<tr height="40">
+			<td align="right" >分类名称</td>
+			<td><INPUT TYPE="text" NAME="sort_title" size=20 value="">
+			<font color="red">*必填</font>
+			</td>
+		</tr>
+		<tr height="40">
+			<td align="right">分类描述</td>
+			<td><INPUT TYPE="text" NAME="sort_description" size=40 value="">
+			</td>
+		</tr>
+		<tr height="40">
+			<td align="right">上级分类</td>
+			<td>
+		  <select name="sort_parentid" >
+			<option value="-1">选择分类</option>
+			<option value='2' style="color:#AA2222;">按年龄分</option>
+<option value='10'>---1岁以上</option>
+<option value='27'>---2岁以上</option>
+<option value='25'>---3岁以上</option>
+<option value='68'>---4岁以上</option>
+<option value='11'>---5岁以上</option>
+<option value='78'>---6岁以上</option>
+<option value='94'>---家长阅读</option>
+
+<option value='3' style="color:#AA2222;">按语言分</option>
+<option value='13'>---中文</option>
+<option value='90'>---英文</option>
+<option value='14'>---双语</option>
+
+<option value='4' style="color:#AA2222;">按绘本馆和出版社分</option>
+<option value='42'>---启发童书</option>
+<option value='43'>---信谊绘本</option>
+<option value='44'>---蒲蒲兰绘本馆</option>
+<option value='99'>---爱心树绘本馆</option>
+<option value='101'>--海豚绘本花园</option>
+<option value='102'>--悦读阅美绘本馆</option>
+<option value='103'>--蒲公英绘本馆</option>
+<option value='108'>--外研出版社</option>
+<option value='109'>--东方娃娃绘本</option>
+<option value='111'>--接力出版社</option>
+<option value='112'>--新疆青少出版社</option>
+<option value='115'>--21世纪出版社</option>
+<option value='113'>--河北出版社</option>
+<option value='116'>--明天出版社</option>
+<option value='114'>--未来出版社</option>
+<option value='117'>--南海出版社</option>
+<option value='39'>---系列绘本</option>
+<option value='87'>---其他出版社</option>
+
+<option value='5' style="color:#AA2222;">按主题分</option>
+<option value='45'>---思维拓展</option>
+<option value='46'>---生命教育</option>
+<option value='47'>---品格培养</option>
+<option value='48'>---品格培养</option>
+<option value='49'>---习惯养成</option>
+<option value='50'>---数学和百科</option>
+
+<option value='6' style="color:#AA2222;">大师绘本</option>
+<option value='51'>---汉斯?比尔</option>
+<option value='52'>---谢尔?希尔弗斯坦 </option>
+<option value='53'>---安东尼?布朗</option>
+<option value='54'>---李欧?李奥尼</option>
+<option value='33'>---宫西达也</option>
+<option value='34'>---五味太郎</option>
+<option value='71'>---佐佐木洋子</option>
+<option value='72'>---艾瑞?卡尔</option>
+
+<option value='7' style="color:#AA2222;">大奖绘本</option>
+<option value='55'>---美国凯迪克大奖</option>
+<option value='56'>---国际安徒生奖</option>
+<option value='57'>---英国格林威大奖</option>
+<option value='58'>---德国绘本大奖</option>
+<option value='59'>---日本绘本大奖</option>
+ </select>
+			<br>
+			说明：只有二级分类需要选择，一级分类请留空。
+			</td>
+		</tr>
+        <tr height="40">
+			<td align="right">分类排序</td>
+			<td><INPUT TYPE="text" NAME="sort_order" size=40 value="">
+			</td>
+		</tr>
+		<tr height="40">
+			<td align="center" colspan="2">
+			<INPUT TYPE="submit" value=" 添加分类 ">
+			</td>
+		</tr>
+		</table>
+		</form>
+
+
+</body>
+</html>

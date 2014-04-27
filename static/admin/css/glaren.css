@@ -1,0 +1,34 @@
+body{ background-color: #9ad075; font-family:"微软雅黑", "宋体" ; margin:0px; padding:0; border:0; background-repeat:repeat-x;}
+
+
+/*管理登录*/
+
+.header_admin{ background-image:url(../images/frame/topbg.gif); height:60px; font-size:20px; font-weight:bold; text-align:center; line-height:60PX;}
+
+.wrap{ width:900px; margin:auto; }
+
+.content{ margin-top:10px; background-color:#F1F8B4;}
+
+.location{ font-size:12px;}
+
+.f_14_000{ height:40px;}
+
+
+/*管理登录*/
+
+.middle{ width:900px; margin:auto; background-color:#F1F8B4;}
+
+a{font:12px "微软雅黑", Verdana, Arial, Helvetica, sans-serif; color:#039; text-decoration:none; width:150px;}
+ 
+ a:hover{color:#C30;  background-color:#F1F8B4;}
+ 
+ .daohang{ width:650px;  margin-left:20px; background-color:#CCC; font-size:14px;}
+ 
+ .neirong{ width:650px;  margin-left:20px; height:500px; font-size:14px;}
+ 
+ .body_right{ width:700px; float:left ;background-color:#FFF;}
+ 
+ .edit_shezhi{ border:#eee 1px solid;}
+ 
+
+.body_left{ width:200px; float:left; background-color:#693; height:500px;}
