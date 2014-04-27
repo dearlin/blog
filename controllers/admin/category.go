@@ -58,6 +58,7 @@ func (this *CategoryController) Store() {
 }
 
 func (this *CategoryController) Edit() {
+	//
 
 }
 
