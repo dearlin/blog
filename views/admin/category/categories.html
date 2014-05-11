@@ -135,7 +135,7 @@ function noSelAll()
 	<td align="left"><a href=''><u>{{.Catename}}</u></a></td>
 	<td>{{.Articlenum}}</td>
 	<td>{{.Createtime | strtotime}}</td>
-	<td><a href="101">编辑</a> | <a href="101">预览</a></td>
+	<td><a href="/admin/category/edit?id={{.Id}}">编辑</a> | <a href="/admin/category/delete?id={{.Id}}">删除</a></td>
 </tr>
 {{end}}
 

@@ -2,9 +2,10 @@ package admincontrollers
 
 import (
 	"blog/models"
-	"fmt"
+	//"fmt"
 	"github.com/astaxie/beego"
-	"time"
+	//"time"
+	//"strconv"
 )
 
 type CategoryController struct {
@@ -25,21 +26,43 @@ func (this *CategoryController) Index() {
 }
 
 func (this *CategoryController) Get() {
-	var err error
+	/*var err error
 	this.Data["Categories"], err = models.GetCategories()
 	if err != nil {
 		beego.Error(err)
-	}
-	var cs []*models.Category
+	}*/
+	/*var cs []*models.Category
 	cs, _ = models.GetCategories()
 	for _, v := range cs {
 		fmt.Println(time.Unix(v.Createtime, 0).Format("2006-01-02"))
-	}
+	}*/
+
+	//cate := models.CateTree{}
 
 	this.TplNames = "admin/categories.html"
 }
 
 func (this *CategoryController) Create() {
+	/*var cateTree map[string]*models.Category
+
+	var err error
+
+	parentid := int64(0)
+	cateTree, err = models.GetCategoryTree(parentid)
+	if err != nil {
+		beego.Error(err)
+	}
+	for _, v := range cateTree {
+		fmt.Println(v)
+		fmt.Println(1)
+	}*/
+
+	//cate := &models.CateTree{}
+	models.GetCateTree(0)
+	//fmt.Println(cate)
+	//models.ShowNode(cate, "")
+	models.Show()
+
 	this.TplNames = "admin/category/add.html"
 }
 
@@ -58,16 +81,50 @@ func (this *CategoryController) Store() {
 }
 
 func (this *CategoryController) Edit() {
-	//
+	id := this.Input().Get("id")
 
+	var err error
+	this.Data["Cate"], err = models.GetCategory(id)
+
+	if err != nil {
+		beego.Error(err)
+	}
+
+	this.TplNames = "admin/category/edit.html"
 }
 
 func (this *CategoryController) Update() {
+	category := models.Category{}
 
+	if err := this.ParseForm(&category); err != nil {
+		beego.Error(err)
+	}
+
+	err := models.ModifyCategory(&category)
+
+	if err != nil {
+		beego.Error(err)
+	}
+
+	this.Redirect("/admin/category/list", 302)
+
+	return
 }
 
 func (this *CategoryController) Delete() {
+	id := this.Input().Get("id")
 
+	var err error
+
+	err = models.DelCategory(id)
+
+	if err != nil {
+		beego.Error(err)
+	}
+
+	this.Redirect("/admin/category/list", 302)
+
+	return
 }
 
 func (this *CategoryController) List() {
