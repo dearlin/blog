@@ -160,7 +160,12 @@ func GetCategoriesOfParentId(parentid int64) ([]*Category, error) {
 	return cates, err
 }
 
+func GetCates() orm.QuerySeter {
+	return orm.NewOrm().QueryTable("category")
+}
+
 func GetCategories() ([]*Category, error) {
+
 	o := orm.NewOrm()
 
 	cates := make([]*Category, 0)

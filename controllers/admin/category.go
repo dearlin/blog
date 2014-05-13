@@ -6,6 +6,7 @@ import (
 	"github.com/astaxie/beego"
 	//"time"
 	//"strconv"
+	"github.com/beego/wetalk/modules/utils"
 )
 
 type CategoryController struct {
@@ -128,12 +129,28 @@ func (this *CategoryController) Delete() {
 }
 
 func (this *CategoryController) List() {
-	var err error
+	/*var err error
 	this.Data["Categories"], err = models.GetCategories()
 	if err != nil {
 		beego.Error(err)
-	}
+	}*/
+
+	limit := 2
+	qs := models.GetCates()
+	nums, _ := qs.Count()
+
+	pager := this.SetPaginator(limit, nums)
+	var categories []*models.Category
+	qs.Limit(limit, pager.Offset()).All(&categories)
+	this.Data["Categories"] = categories
+
 	this.TplNames = "admin/category/categories.html"
+}
+
+func (this *CategoryController) SetPaginator(per int, nums int64) *utils.Paginator {
+	p := utils.NewPaginator(this.Ctx.Request, per, nums)
+	this.Data["Paginator"] = p
+	return p
 }
 
 /*func (this *CategoryController) Post() {
